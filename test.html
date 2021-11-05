@@ -138,21 +138,21 @@ function savemyCSV() {
 ///CODE FOR SECOND GRAPH
 <div id="div_h" style="width:1200px; height:300px;"></div>
 <script type="text/javascript">
-$(document2).ready(function () {
+$(document).ready(function () {
  var data2 = [];
  var rec_flag2 = false;
  var start_time2;
  var connection2;
- var xconnect2 = document2.getElementById("myPuck2_connect");
- var savemy_CSV2 = document2.getElementById("my2_Savedata");
- var rec_startstop2 = document2.getElementById("myrecord2_start"); 
+ var xconnect2 = document.getElementById("myPuck2_connect");
+ var savemy_CSV2 = document.getElementById("my2_Savedata");
+ var rec_startstop2 = document.getElementById("myrecord2_start"); 
  var taxis_increment2 = 10 * 1000; /// axis increment in milliseconds
  var t2 = new Date2();
  data2.push([t, 1000.000]);
  var date_win_min2 = t2.getTime();
  var date_win_max2 = date_win_min2 + 2*taxis_increment2; 
 
- var h2 = new Dygraph(document2.getElementById("div_h"), data2, /// THIS IS WHERE A NEW GRAPH IS CREATED, 
+ var h2 = new Dygraph(document.getElementById("div_h"), data2, /// THIS IS WHERE A NEW GRAPH IS CREATED, 
  {
  drawPoints: true,
  showRoller: true,
