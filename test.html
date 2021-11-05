@@ -138,26 +138,26 @@ function savemyCSV() {
 ///CODE FOR SECOND GRAPH
 <div id="div_h" style="width:1200px; height:300px;"></div>
 <script type="text/javascript">
-$(document).ready(function () {
- var data = [];
- var rec_flag = false;
- var start_time;
- var connection;
- var xconnect = document.getElementById("myPuck2_connect");
- var savemy_CSV = document.getElementById("my2_Savedata");
- var rec_startstop = document.getElementById("myrecord2_start"); 
- var taxis_increment = 10 * 1000; /// axis increment in milliseconds
- var t = new Date();
- data.push([t, 1000.000]);
- var date_win_min = t.getTime();
- var date_win_max = date_win_min + 2*taxis_increment; 
+$(document2).ready(function () {
+ var data2 = [];
+ var rec_flag2 = false;
+ var start_time2;
+ var connection2;
+ var xconnect2 = document2.getElementById("myPuck2_connect");
+ var savemy_CSV2 = document2.getElementById("my2_Savedata");
+ var rec_startstop2 = document2.getElementById("myrecord2_start"); 
+ var taxis_increment2 = 10 * 1000; /// axis increment in milliseconds
+ var t2 = new Date2();
+ data2.push([t, 1000.000]);
+ var date_win_min2 = t2.getTime();
+ var date_win_max2 = date_win_min2 + 2*taxis_increment2; 
 
- var h = new Dygraph(document.getElementById("div_h"), data, /// THIS IS WHERE A NEW GRAPH IS CREATED, 
+ var h2 = new Dygraph(document2.getElementById("div_h"), data2, /// THIS IS WHERE A NEW GRAPH IS CREATED, 
  {
  drawPoints: true,
  showRoller: true,
  digitsAfterDecimal: 3,
- dateWindow: [date_win_min, date_win_max],
+ dateWindow: [date_win_min2, date_win_max2],
  // valueRange: [980, 1020],
  labels: ['Time', 'Pressure'],
  showRangeSelector: true
