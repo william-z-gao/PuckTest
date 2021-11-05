@@ -154,13 +154,13 @@ $(document).ready(function () {
 
       var h = new Dygraph(document.getElementById("div_h"), data,   /// THIS IS WHERE A NEW GRAPH IS CREATED, 
                           {
-                            drawPoints2: true,
-                            showRoller2: true,
-                            digitsAfterDecimal2: 3,
-                            dateWindow2: [date_win_min2, date_win_max2],
+                            drawPoints: true,
+                            showRoller: true,
+                            digitsAfterDecimal: 3,
+                            dateWindow: [date_win_min2, date_win_max2],
                             // valueRange: [980, 1020],
                             labels: ['Time', 'Pressure'],
-                            showRangeSelector2: true
+                            showRangeSelector: true
                           });
 
        function onLine(v2) {
