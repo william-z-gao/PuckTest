@@ -139,120 +139,120 @@ function savemyCSV() {
 <div id="div_h" style="width:1200px; height:300px;"></div>
 <script type="text/javascript">
 $(document).ready(function () {
-      var data = [];
-      var rec_flag = false;
-      var start_time;
-      var connection;
-      var xconnect = document.getElementById("myPuck2_connect");
-      var savemy_CSV = document.getElementById("my2_Savedata");
-      var rec_startstop = document.getElementById("myrecord2_start"); 
-      var taxis_increment = 10 * 1000;           /// axis increment in milliseconds
-      var t = new Date();
-      data.push([t, 1000.000]);
-      var date_win_min = t.getTime();
-      var date_win_max = date_win_min + 2*taxis_increment;   
+      var data2 = [];
+      var rec_flag2 = false;
+      var start_time2;
+      var connection2;
+      var xconnect2 = document.getElementById("myPuck2_connect");
+      var savemy_CSV2 = document.getElementById("my2_Savedata");
+      var rec_startstop2 = document.getElementById("myrecord2_start"); 
+      var taxis_increment2 = 10 * 1000;           /// axis increment in milliseconds
+      var t2 = new Date();
+      data.push([t2, 1000.000]);
+      var date_win_min2 = t2.getTime();
+      var date_win_max2 = date_win_min2 + 2*taxis_increment2;   
 
       var h = new Dygraph(document.getElementById("div_h"), data,   /// THIS IS WHERE A NEW GRAPH IS CREATED, 
                           {
-                            drawPoints: true,
-                            showRoller: true,
-                            digitsAfterDecimal: 3,
-                            dateWindow: [date_win_min, date_win_max],
+                            drawPoints2: true,
+                            showRoller2: true,
+                            digitsAfterDecimal2: 3,
+                            dateWindow2: [date_win_min2, date_win_max2],
                             // valueRange: [980, 1020],
                             labels: ['Time', 'Pressure'],
-                            showRangeSelector: true
+                            showRangeSelector2: true
                           });
 
-       function onLine(v) {
-            if(rec_flag) {
-                        var x = new Date();  // current time 
-                        var y = parseFloat(v);
-                        if ( x.getTime() >= date_win_max) {
-                                    date_win_min += taxis_increment;
-                                     date_win_max += taxis_increment;
-                                     h.updateOptions( { dateWindow : [date_win_min, date_win_max] } );
+       function onLine(v2) {
+            if(rec_flag2) {
+                        var x2 = new Date();  // current time 
+                        var y2 = parseFloat(v2);
+                        if ( x2.getTime() >= date_win_max2) {
+                                    date_win_min2 += taxis_increment2;
+                                     date_win_max2 += taxis_increment2;
+                                     h.updateOptions( { dateWindow2 : [date_win_min2, date_win_max2] } );
                         };
-                        data.push([x, y]);
-                        h.updateOptions( { 'file': data } );
+                        data2.push([x2, y2]);
+                        h.updateOptions( { 'file': data2 } );
             };
       }  
 
       function startstop_record()
       {                
-                        if(rec_flag) {
-                              rec_startstop.textContent = "Start New Recording";
-                              rec_flag = false; 
-                              connection.write("clearInterval(1)\n", function() { });
+                        if(rec_flag2) {
+                              rec_startstop2.textContent = "Start New Recording";
+                              rec_flag2 = false; 
+                              connection2.write("clearInterval(1)\n", function() { });
                         } else {
-                              data.splice(0,data.length);
-                              connection.write("setInterval(function(){Bluetooth.println(ecg().toFixed(3));} ,30); \n", function() { });
-                              t = new Date();
-                              start_time = t;
-                              var date_win_min = t.getTime();
-                              var date_win_max = date_win_min + 2*taxis_increment;
-                              h.updateOptions( { dateWindow : [date_win_min, date_win_max] } );                       
-                              rec_flag = true;
-                              rec_startstop.textContent= "Stop Recording";
+                              data2.splice(0,data2.length);
+                              connection2.write("setInterval(function(){Bluetooth.println(ecg().toFixed(3));} ,30); \n", function() { });
+                              t2 = new Date();
+                              start_time2 = t2;
+                              var date_win_min2 = t2.getTime();
+                              var date_win_max2 = date_win_min2 + 2*taxis_increment2;
+                              h.updateOptions( { dateWindow2 : [date_win_min2, date_win_max2] } );                       
+                              rec_flag2 = true;
+                              rec_startstop2.textContent= "Stop Recording";
                         };     
       }
 
       function bluetooth_connect() {
-            Puck.connect(function(x) {
+            Puck.connect(function(x2) {
               //      alert("In Puck connect");
-                      if (!x) {
+                      if (!x2) {
                       alert("Couldn't connect!");
                           return;
                         }
                         connection2 = x;               
                   // Handle the data we get back, and call 'onLine'
                   // whenever we get a line
-                        var buf = "";
+                        var buf2 = "";
                         connection2.on("data", function(d) {
-                         buf += d;
-                        var i = buf.indexOf("\n");
-                        while (i>=0) {
-                              onLine(buf.substr(0,i));
-                              buf = buf.substr(i+1);
-                              i = buf.indexOf("\n");
+                         buf2 += d;
+                        var i2 = buf2.indexOf("\n");
+                        while (i2>=0) {
+                              onLine(buf2.substr(0,i));
+                              buf2 = buf2.substr(i+1);
+                              i2 = buf2.indexOf("\n");
                             }
                         }); // connection2.on ()
-                        xconnect.textContent = "Disconnect Puck via Bluetooth";
+                        xconnect2.textContent = "Disconnect Puck via Bluetooth";
             }); // End Puck.connect () 
 }   
 
 function savemyCSV() {
-      var csvContent = '';
-      data.forEach(function(dataArray, index) {
-            var diff_time = dataArray[0].getTime()-start_time;
-            dataString = diff_time.toFixed(0) + ',' + dataArray[1].toFixed(3);
-            csvContent += index < data.length ? dataString + '\n' : dataString;
+      var csvContent2 = '';
+      data2.forEach(function(dataArray2, index2) {
+            var diff_time2 = dataArray2[0].getTime()-start_time2;
+            dataString2 = diff_time2.toFixed(0) + ',' + dataArray2[1].toFixed(3);
+            csvContent2 += index2 < data2.length ? dataString2 + '\n' : dataString2;
       });
 
       // The download function takes a CSV string, the filename and mimeType as parameters
       // Scroll/look down at the bottom of this snippet to see how download is called
-      var download = function(content, fileName, mimeType) {
-                  var a = document.createElement('a');
-                  mimeType = mimeType || 'application/octet-stream';
-                  if (navigator.msSaveBlob) { // IE10
-                        navigator.msSaveBlob(new Blob([content], { type: mimeType }), fileName);
+      var download2 = function(content2, fileName2, mimeType2) {
+                  var a2 = document2.createElement('a2');
+                  mimeType2 = mimeType2 || 'application/octet-stream';
+                  if (navigator2.msSaveBlob) { // IE10
+                        navigator2.msSaveBlob(new Blob([content2], { type: mimeType2 }), fileName2);
                   } else if (URL && 'download' in a) { //html5 A[download]
-                   a.href = URL.createObjectURL(new Blob([content], { type: mimeType }));
+                   a.href = URL.createObjectURL(new Blob([content2], { type: mimeType2 }));
 
-                  a.setAttribute('download', fileName);
-                  document.body.appendChild(a);
-                  a.click();
-                  document.body.removeChild(a);
+                  a2.setAttribute('download', fileName2);
+                  document2.body.appendChild(a2);
+                  a2.click();
+                  document2.body.removeChild(a);
                   } else {
-                        location.href = 'data:application/octet-stream,' + encodeURIComponent(content); // only this mime type is supported
+                        location2.href = 'data:application/octet-stream,' + encodeURIComponent2(content2); // only this mime type is supported
                   }
             }
-            download(csvContent, 'Puck.csv', 'text/csv;encoding:utf-8');      
+            download2(csvContent2, 'Puck.csv', 'text/csv;encoding:utf-8');      
 }     // end savemyCSV();
 
 
-      xconnect.addEventListener("click", function () { bluetooth_connect() } );
-      savemy_CSV.addEventListener("click", function () { savemyCSV() } );
-      rec_startstop.addEventListener("click", function () { startstop_record() } );
+      xconnect2.addEventListener("click", function () { bluetooth_connect() } );
+      savemy_CSV2.addEventListener("click", function () { savemyCSV() } );
+      rec_startstop2.addEventListener("click", function () { startstop_record() } );
     }); 
 
 
