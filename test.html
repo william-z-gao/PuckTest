@@ -152,16 +152,16 @@ $(document).ready(function () {
       var date_win_min2 = t2.getTime();
       var date_win_max2 = date_win_min2 + 2*taxis_increment2;   
 
-      var h = new Dygraph(document.getElementById("div_h"), data,   /// THIS IS WHERE A NEW GRAPH IS CREATED, 
-                          {
-                            drawPoints: true,
-                            showRoller: true,
-                            digitsAfterDecimal: 3,
-                            dateWindow: [date_win_min2, date_win_max2],
-                            // valueRange: [980, 1020],
-                            labels: ['Time', 'Pressure'],
-                            showRangeSelector: true
-                          });
+      var h = new Dygraph(document.getElementById("div_h"), data, /// THIS IS WHERE A NEW GRAPH IS CREATED, 
+ {
+ drawPoints: true,
+ showRoller: true,
+ digitsAfterDecimal: 3,
+ dateWindow: [date_win_min, date_win_max],
+ // valueRange: [980, 1020],
+ labels: ['Time', 'Pressure'],
+ showRangeSelector: true
+ });
 
        function onLine(v2) {
             if(rec_flag2) {
