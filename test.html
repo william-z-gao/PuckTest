@@ -143,9 +143,9 @@ $(document).ready(function () {
  var rec_flag = false;
  var start_time;
  var connection;
- var xconnect2 = document.getElementById("myPuck2_connect");
- var savemy_CSV2 = document.getElementById("my2_Savedata");
- var rec_startstop2 = document.getElementById("myrecord2_start"); 
+ var xconnect = document.getElementById("myPuck2_connect");
+ var savemy_CSV = document.getElementById("my2_Savedata");
+ var rec_startstop = document.getElementById("myrecord2_start"); 
  var taxis_increment = 10 * 1000; /// axis increment in milliseconds
  var t = new Date();
  data.push([t, 1000.000]);
@@ -180,7 +180,7 @@ $(document).ready(function () {
  function startstop_record()
  { 
  if(rec_flag) {
- rec_startstop2.textContent = "Start New Recording";
+ rec_startstop.textContent = "Start New Recording";
  rec_flag = false; 
  connection.write("clearInterval(1)\n", function() { });
  } else {
@@ -192,7 +192,7 @@ $(document).ready(function () {
  var date_win_max = date_win_min + 2*taxis_increment;
  h.updateOptions( { dateWindow : [date_win_min, date_win_max] } ); 
  rec_flag = true;
- rec_startstop2.textContent= "Stop Recording";
+ rec_startstop.textContent= "Stop Recording";
  }; 
  }
 
